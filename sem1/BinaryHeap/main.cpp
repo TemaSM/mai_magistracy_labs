@@ -6,6 +6,7 @@
 using namespace std;
 
 #include "BinaryHeap.class/BinaryHeap.cpp"
+#include "SortingAlgorithms.cpp"
 
 int wmain(int argc, wchar_t* argv[])
 {
@@ -16,6 +17,7 @@ int wmain(int argc, wchar_t* argv[])
     _setmode(_fileno(stderr), _O_U16TEXT);
 
     BinaryHeap binaryHeap;
+
     while (1)
     {
         wcout << "\n------------------" << endl;
@@ -25,7 +27,8 @@ int wmain(int argc, wchar_t* argv[])
         wcout << L"2) Удалить минимальный элемент" << endl;
         wcout << L"3) Получить минимальный элемент" << endl;
         wcout << L"4) Вывести кучу" << endl;
-        wcout << L"5) Выход" << endl;
+        wcout << L"5) Отсортировать при помощи Quicksort" << endl;
+        wcout << L"6) Выход" << endl;
         int choice, element;
         wcout << L"Выберите операцию:\n" << endl;
 
@@ -63,11 +66,20 @@ int wmain(int argc, wchar_t* argv[])
             wcout << L"Элементы кучи:  ";
             binaryHeap.DisplayHeap();
             break;
-        case 5:
+        case 5: {
+            wcout << L"Вектор (массив) элементов кучи до сортироки: ";
+            binaryHeap.DisplayHeap();
+            Quicksort::Quicksort(*binaryHeap.GetHeap());
+            wcout << L"Вектор (массив) элементов кучи после сортироки: ";
+            binaryHeap.DisplayHeap();
+            break;
+        }
+        case 6:
             exit(1);
         default:
             wcout << L"\nВыберите пункт из меню, указав его номер" << endl;
         }
     }
+
     return 0;
 }

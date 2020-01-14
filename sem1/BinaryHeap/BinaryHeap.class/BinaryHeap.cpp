@@ -29,7 +29,7 @@ private:
     /// <param name="parent">Узел-родитель</summary>
     int left(int parent)
     {
-        int l = 2 * parent + 1;
+        unsigned int l = 2 * parent + 1;
         return l < heap.size() ? 1 : -1;
     }
 
@@ -37,7 +37,7 @@ private:
     /// <param name="parent">Узел-родитель</summary>
     int right(int parent)
     {
-        int r = 2 * parent + 2;
+        unsigned int r = 2 * parent + 2;
         return r < heap.size() ? r : -1;
     }
 
@@ -101,7 +101,7 @@ public:
 
     /// <summary>Размер кучи</summary>
     /// <returns>Возвращает размер кучи в Int32</returns>
-    int Size()
+    unsigned int Size()
     {
         return heap.size();
     }
@@ -113,6 +113,7 @@ public:
     /// Возможно, что при этом будет нарушено основное свойство кучи, т.к. новый элемент может быть больше родителя.
     /// В таком случае новый элемент "поднимается" на один уровень (меняется с вершиной-родителем) до тех пор, пока не будет соблюдено основное свойство кучи.
     /// </remarks>
+    /// <param name="element">Элемент с типом Int32 который будет вставлен в кучу</summary>
     void Insert(int element)
     {
         heap.push_back(element);
@@ -147,15 +148,29 @@ public:
         return heap.size() == 0 ? -1 : heap.front();
     }
 
+    /// <summary>Операция получения вектора (массива) кучи</summary>
+    /// <returns>Возвращает ссылку на вектор (массив) кучи</returns>
+    vector<int>* GetHeap() {
+        return &this->heap;
+    }
+
     /// <summary>Операция вывода кучи в stdout</summary>
     void DisplayHeap()
     {
-        vector<int>::iterator pos = heap.begin();
+        this->DisplayVector(heap);
+    }
+
+    /// <summary>Операция вывода вектора в stdout</summary>
+    /// <param name="v">Вектор который необходимо вывести в stdout</summary>
+    template <typename T>
+    static void DisplayVector(vector<T> &v)
+    {
+        typename vector<T>::iterator itr = v.begin();
         // wcout << "Куча -->  ";
-        while (pos != heap.end())
+        while (itr != v.end())
         {
-            wcout << *pos << " ";
-            pos++;
+            wcout << *itr << " ";
+            itr++;
         }
         wcout << endl;
     }
