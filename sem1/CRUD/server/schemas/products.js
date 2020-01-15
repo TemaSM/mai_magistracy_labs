@@ -23,8 +23,8 @@ NEWSCHEMA('Products', function (schema) {
 
   schema.setInsert(function ($) {
     const data = $.clean()
-    data.name = $.query.name
-    data.price = Number($.query.price)
+    // data.name = $.body.name
+    // data.price = Number($.body.price)
     NOSQL('products').insert(data).callback($.done(data.id))
   })
 

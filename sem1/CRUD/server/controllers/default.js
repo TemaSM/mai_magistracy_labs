@@ -1,8 +1,22 @@
 export function install(options) {
   CORS()
-  ROUTE('/', plain_version)
+  ROUTE('/')
+  LOCALIZE('/forms/*.html')
+  ROUTE('GET  /api/download/', download)
 }
 
-function plain_version() {
-  this.plain('API of {0}\nVersion: {1}'.format(CONF.name, CONF.version))
+function download() {
+  const self = this
+  self.custom()
+  U.download(self.query.url, ['get'], function (err, response) {
+    if (err) {
+      self.throw401()
+      return
+    }
+
+    const headers = []
+    headers['content-type'] = 'text/plain'
+    self.res.writeHead(200, headers)
+    response.pipe(self.res)
+  })
 }

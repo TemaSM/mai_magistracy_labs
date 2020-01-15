@@ -9,7 +9,6 @@ NEWSCHEMA('Orders', function (schema) {
 
   schema.setQuery(function ($) {
     const builder = NOSQL('orders').find()
-    // if ($.query.search) builder.search('name', $.query.search)
     builder.sort('createdAt', true)
     builder.callback($.callback)
   })
@@ -24,8 +23,8 @@ NEWSCHEMA('Orders', function (schema) {
 
   schema.setInsert(function ($) {
     const data = $.clean()
-    data.customer_id = $.query.customer_id
-    data.product_ids = $.query.product_ids
+    // data.customer_id = $.body.customer_id
+    // data.product_ids = $.body.product_ids
     NOSQL('orders').insert(data).callback($.done(data.id))
   })
 

@@ -26,7 +26,7 @@ module.exports = {
     camelcase: ['off'],
     'brace-style': [0, '1tbs', { allowSingleLine: true }],
     'comma-dangle': ['error', 'always-multiline'],
-    'no-undef': 'warn',
+    'no-undef': 'off',
     'no-unused-vars': 'warn',
     'no-var': 'error',
     'no-case-declarations': 'warn',

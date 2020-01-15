@@ -5,16 +5,12 @@
       "type": "node",
       "request": "launch",
       "name": "Server : Debug",
-      "runtimeExecutable": "npm",
+      "program": "${workspaceFolder}/debug.js",
       "cwd": "${workspaceFolder}",
       "console": "integratedTerminal",
       "autoAttachChildProcesses": true,
       "restart": true,
       "sourceMaps": true,
-      "runtimeArgs": [
-        "run",
-        "debug"
-      ],
       "port": 9229,
       "skipFiles": [
         "<node_internals>/**"
@@ -24,16 +20,11 @@
       "type": "node",
       "request": "launch",
       "name": "Server : Release",
-      "runtimeExecutable": "npm",
-      "cwd": "${workspaceFolder}",
+      "program": "${workspaceFolder}/release.js",
       "console": "integratedTerminal",
       "autoAttachChildProcesses": true,
       "restart": true,
       "sourceMaps": true,
-      "runtimeArgs": [
-        "run",
-        "release"
-      ],
       "port": 9229,
       "skipFiles": [
         "<node_internals>/**"
